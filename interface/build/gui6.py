@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\andre\Desktop\faculdade\sistema de condominio\interface\build\assets\frame6")
+ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\andre\Desktop\faculdade\sistema de condominio\sistema_de_condominio_\interface\build\assets\frame6")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -20,15 +20,15 @@ def relative_to_assets(path: str) -> Path:
 
 window = Tk()
 
-window.geometry("720x580")
+window.geometry("950x680")
 window.configure(bg = "#FFFFFF")
-
+window.title("Sistema de Condomínio")
 
 canvas = Canvas(
     window,
     bg = "#FFFFFF",
-    height = 580,
-    width = 720,
+    height = 680,
+    width = 950,
     bd = 0,
     highlightthickness = 0,
     relief = "ridge"
@@ -38,90 +38,126 @@ canvas.place(x = 0, y = 0)
 image_image_1 = PhotoImage(
     file=relative_to_assets("image_1.png"))
 image_1 = canvas.create_image(
-    145.0,
-    152.0,
+    249.0,
+    366.0,
     image=image_image_1
 )
 
 canvas.create_text(
-    570.0,
-    25.0,
-    anchor="nw",
-    text="Liberar visitantes",
-    fill="#B9B9B9",
-    font=("BeVietnamPro Light", 13 * -1)
-)
-
-canvas.create_text(
-    59.0,
-    150.0,
+    115.0,
+    354.0,
     anchor="nw",
     text="horário",
     fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
-)
-
-canvas.create_text(
-    165.0,
-    123.0,
-    anchor="nw",
-    text="09/05/2024",
-    fill="#000000",
     font=("BeVietnamPro Medium", 10 * -1)
 )
 
 canvas.create_text(
-    165.0,
-    150.0,
+    270.0,
+    326.0,
+    anchor="nw",
+    text="09/05/2024",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    270.0,
+    354.0,
     anchor="nw",
     text="Unidade Vinculada",
     fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
+    font=("BeVietnamPro Medium", 10 * -1)
 )
 
 canvas.create_text(
-    59.0,
-    123.0,
+    115.0,
+    322.0,
     anchor="nw",
     text="vinicius",
     fill="#000000",
-    font=("BeVietnamPro MediumItalic", 11 * -1)
+    font=("BeVietnamPro MediumItalic", 14 * -1)
 )
 
 canvas.create_text(
-    59.0,
-    117.0,
+    115.0,
+    313.0,
     anchor="nw",
     text="nome",
     fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
+    font=("BeVietnamPro Medium", 10 * -1)
+)
+
+canvas.create_text(
+    269.0,
+    314.0,
+    anchor="nw",
+    text="data",
+    fill="#7C7C7C",
+    font=("BeVietnamPro Medium", 10 * -1)
+)
+
+canvas.create_text(
+    270.0,
+    366.0,
+    anchor="nw",
+    text="bloco ",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    360.0,
+    366.0,
+    anchor="nw",
+    text="504",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    324.0,
+    366.0,
+    anchor="nw",
+    text="apto",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    312.0,
+    366.0,
+    anchor="nw",
+    text="3",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    115.0,
+    366.0,
+    anchor="nw",
+    text="09h00 ",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
 )
 
 canvas.create_text(
     164.0,
-    117.0,
+    366.0,
     anchor="nw",
-    text="data",
-    fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
+    text="ás",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
 )
 
 canvas.create_text(
-    165.0,
-    157.0,
+    181.0,
+    366.0,
     anchor="nw",
-    text="bloco 3 apto 504",
+    text=" 21h30",
     fill="#000000",
-    font=("BeVietnamPro Medium", 8 * -1)
-)
-
-canvas.create_text(
-    59.0,
-    157.0,
-    anchor="nw",
-    text="09h00 às 21h30",
-    fill="#000000",
-    font=("BeVietnamPro Medium", 8 * -1)
+    font=("BeVietnamPro Medium", 14 * -1)
 )
 
 button_image_1 = PhotoImage(
@@ -134,90 +170,135 @@ button_1 = Button(
     relief="flat"
 )
 button_1.place(
-    x=120.0,
-    y=173.0,
-    width=53.0,
-    height=17.0
+    x=212.0,
+    y=397.0,
+    width=69.0,
+    height=21.327281951904297
 )
 
 image_image_2 = PhotoImage(
     file=relative_to_assets("image_2.png"))
 image_2 = canvas.create_image(
-    145.0,
-    366.0,
+    249.0,
+    519.0,
     image=image_image_2
 )
 
 canvas.create_text(
-    59.0,
-    364.0,
+    115.0,
+    507.0,
     anchor="nw",
     text="horário",
     fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
-)
-
-canvas.create_text(
-    165.0,
-    337.0,
-    anchor="nw",
-    text="09/05/2024",
-    fill="#000000",
     font=("BeVietnamPro Medium", 10 * -1)
 )
 
 canvas.create_text(
-    165.0,
-    364.0,
+    270.0,
+    479.0,
+    anchor="nw",
+    text="09/05/2024",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    270.0,
+    507.0,
     anchor="nw",
     text="Unidade Vinculada",
     fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
+    font=("BeVietnamPro Medium", 10 * -1)
 )
 
 canvas.create_text(
-    59.0,
-    337.0,
+    115.0,
+    475.0,
     anchor="nw",
     text="vinicius",
     fill="#000000",
-    font=("BeVietnamPro MediumItalic", 11 * -1)
+    font=("BeVietnamPro MediumItalic", 14 * -1)
 )
 
 canvas.create_text(
-    59.0,
-    331.0,
+    115.0,
+    466.0,
     anchor="nw",
     text="nome",
     fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
+    font=("BeVietnamPro Medium", 10 * -1)
+)
+
+canvas.create_text(
+    269.0,
+    467.0,
+    anchor="nw",
+    text="data",
+    fill="#7C7C7C",
+    font=("BeVietnamPro Medium", 10 * -1)
+)
+
+canvas.create_text(
+    270.0,
+    519.0,
+    anchor="nw",
+    text="bloco ",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    360.0,
+    519.0,
+    anchor="nw",
+    text="504",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    324.0,
+    519.0,
+    anchor="nw",
+    text="apto",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    312.0,
+    519.0,
+    anchor="nw",
+    text="3",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    115.0,
+    519.0,
+    anchor="nw",
+    text="09h00 ",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
 )
 
 canvas.create_text(
     164.0,
-    331.0,
+    519.0,
     anchor="nw",
-    text="data",
-    fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
+    text="ás",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
 )
 
 canvas.create_text(
-    165.0,
-    371.0,
+    181.0,
+    519.0,
     anchor="nw",
-    text="bloco 3 apto 504",
+    text=" 21h30",
     fill="#000000",
-    font=("BeVietnamPro Medium", 8 * -1)
-)
-
-canvas.create_text(
-    59.0,
-    371.0,
-    anchor="nw",
-    text="09h00 às 21h30",
-    fill="#000000",
-    font=("BeVietnamPro Medium", 8 * -1)
+    font=("BeVietnamPro Medium", 14 * -1)
 )
 
 button_image_2 = PhotoImage(
@@ -230,90 +311,135 @@ button_2 = Button(
     relief="flat"
 )
 button_2.place(
-    x=120.0,
-    y=387.0,
-    width=53.0,
-    height=17.0
+    x=212.0,
+    y=550.0,
+    width=69.0,
+    height=21.327281951904297
 )
 
 image_image_3 = PhotoImage(
     file=relative_to_assets("image_3.png"))
 image_3 = canvas.create_image(
-    145.0,
-    259.0,
+    249.0,
+    213.0,
     image=image_image_3
 )
 
 canvas.create_text(
-    59.0,
-    257.0,
+    115.0,
+    201.0,
     anchor="nw",
     text="horário",
     fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
-)
-
-canvas.create_text(
-    165.0,
-    230.0,
-    anchor="nw",
-    text="09/05/2024",
-    fill="#000000",
     font=("BeVietnamPro Medium", 10 * -1)
 )
 
 canvas.create_text(
-    165.0,
-    257.0,
+    270.0,
+    173.0,
+    anchor="nw",
+    text="09/05/2024",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    270.0,
+    201.0,
     anchor="nw",
     text="Unidade Vinculada",
     fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
+    font=("BeVietnamPro Medium", 10 * -1)
 )
 
 canvas.create_text(
-    59.0,
-    230.0,
+    115.0,
+    169.0,
     anchor="nw",
     text="vinicius",
     fill="#000000",
-    font=("BeVietnamPro MediumItalic", 11 * -1)
+    font=("BeVietnamPro MediumItalic", 14 * -1)
 )
 
 canvas.create_text(
-    59.0,
-    224.0,
+    115.0,
+    160.0,
     anchor="nw",
     text="nome",
     fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
+    font=("BeVietnamPro Medium", 10 * -1)
+)
+
+canvas.create_text(
+    269.0,
+    161.0,
+    anchor="nw",
+    text="data",
+    fill="#7C7C7C",
+    font=("BeVietnamPro Medium", 10 * -1)
+)
+
+canvas.create_text(
+    270.0,
+    213.0,
+    anchor="nw",
+    text="bloco ",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    360.0,
+    213.0,
+    anchor="nw",
+    text="504",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    324.0,
+    213.0,
+    anchor="nw",
+    text="apto",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    312.0,
+    213.0,
+    anchor="nw",
+    text="3",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
+)
+
+canvas.create_text(
+    115.0,
+    213.0,
+    anchor="nw",
+    text="09h00 ",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
 )
 
 canvas.create_text(
     164.0,
-    224.0,
+    213.0,
     anchor="nw",
-    text="data",
-    fill="#7C7C7C",
-    font=("BeVietnamPro Medium", 7 * -1)
+    text="ás",
+    fill="#000000",
+    font=("BeVietnamPro Medium", 14 * -1)
 )
 
 canvas.create_text(
-    165.0,
-    264.0,
+    181.0,
+    213.0,
     anchor="nw",
-    text="bloco 3 apto 504",
+    text=" 21h30",
     fill="#000000",
-    font=("BeVietnamPro Medium", 8 * -1)
-)
-
-canvas.create_text(
-    59.0,
-    264.0,
-    anchor="nw",
-    text="09h00 às 21h30",
-    fill="#000000",
-    font=("BeVietnamPro Medium", 8 * -1)
+    font=("BeVietnamPro Medium", 14 * -1)
 )
 
 button_image_3 = PhotoImage(
@@ -326,10 +452,19 @@ button_3 = Button(
     relief="flat"
 )
 button_3.place(
-    x=120.0,
-    y=280.0,
-    width=53.0,
-    height=17.0
+    x=212.0,
+    y=244.0,
+    width=69.0,
+    height=21.327281951904297
+)
+
+canvas.create_text(
+    45.0,
+    66.0,
+    anchor="nw",
+    text="hoje",
+    fill="#8EBC4F",
+    font=("BeVietnamPro SemiBold", 45 * -1)
 )
 
 button_image_4 = PhotoImage(
@@ -342,10 +477,106 @@ button_4 = Button(
     relief="flat"
 )
 button_4.place(
-    x=29.0,
-    y=28.0,
-    width=17.0,
-    height=10.0
+    x=639.0,
+    y=279.0,
+    width=115.0,
+    height=40.78125
+)
+
+canvas.create_text(
+    539.0,
+    66.0,
+    anchor="nw",
+    text="Pesquisa",
+    fill="#8EBC4F",
+    font=("BeVietnamPro Bold", 45 * -1)
+)
+
+canvas.create_text(
+    539.0,
+    144.0,
+    anchor="nw",
+    text="nome:",
+    fill="#000000",
+    font=("BeVietnamPro SemiBold", 17 * -1)
+)
+
+entry_image_1 = PhotoImage(
+    file=relative_to_assets("entry_1.png"))
+entry_bg_1 = canvas.create_image(
+    695.0,
+    181.66262912750244,
+    image=entry_image_1
+)
+entry_1 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_1.place(
+    x=548.0,
+    y=166.0,
+    width=294.0,
+    height=29.325258255004883
+)
+
+canvas.create_text(
+    539.0,
+    203.0,
+    anchor="nw",
+    text="bloco:",
+    fill="#000000",
+    font=("BeVietnamPro SemiBold", 17 * -1)
+)
+
+entry_image_2 = PhotoImage(
+    file=relative_to_assets("entry_2.png"))
+entry_bg_2 = canvas.create_image(
+    609.0,
+    240.66262912750244,
+    image=entry_image_2
+)
+entry_2 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_2.place(
+    x=548.0,
+    y=225.0,
+    width=122.0,
+    height=29.325258255004883
+)
+
+canvas.create_text(
+    711.0,
+    203.0,
+    anchor="nw",
+    text="apartamento:",
+    fill="#000000",
+    font=("BeVietnamPro SemiBold", 17 * -1)
+)
+
+entry_image_3 = PhotoImage(
+    file=relative_to_assets("entry_3.png"))
+entry_bg_3 = canvas.create_image(
+    781.0,
+    240.66262912750244,
+    image=entry_image_3
+)
+entry_3 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_3.place(
+    x=720.0,
+    y=225.0,
+    width=122.0,
+    height=29.325258255004883
 )
 
 button_image_5 = PhotoImage(
@@ -358,123 +589,27 @@ button_5 = Button(
     relief="flat"
 )
 button_5.place(
-    x=492.0,
-    y=200.0,
-    width=73.0,
-    height=23.0
+    x=69.0,
+    y=34.0,
+    width=30.0,
+    height=15.0
 )
 
 canvas.create_text(
-    46.0,
-    62.0,
+    724.0,
+    25.0,
     anchor="nw",
-    text="hoje",
-    fill="#8EBC4F",
-    font=("BeVietnamPro SemiBold", 24 * -1)
+    text="Liberar visitantes",
+    fill="#B9B9B9",
+    font=("BeVietnamPro Light", 19 * -1)
 )
 
 canvas.create_rectangle(
-    359.0,
-    76.0,
-    360.0,
-    502.0,
-    fill="#B9B9B9",
+    474.0,
+    90.0,
+    476.0,
+    590.0,
+    fill="#FFFFFF",
     outline="")
-
-canvas.create_text(
-    412.0,
-    62.0,
-    anchor="nw",
-    text="Pesquisa",
-    fill="#8EBC4F",
-    font=("BeVietnamPro SemiBold", 24 * -1)
-)
-
-canvas.create_text(
-    412.0,
-    98.0,
-    anchor="nw",
-    text="nome:",
-    fill="#000000",
-    font=("BeVietnamPro SemiBold", 10 * -1)
-)
-
-canvas.create_text(
-    411.0,
-    139.0,
-    anchor="nw",
-    text="bloco:",
-    fill="#000000",
-    font=("BeVietnamPro SemiBold", 10 * -1)
-)
-
-canvas.create_text(
-    540.0,
-    139.0,
-    anchor="nw",
-    text="apartamento:",
-    fill="#000000",
-    font=("BeVietnamPro SemiBold", 10 * -1)
-)
-
-entry_image_1 = PhotoImage(
-    file=relative_to_assets("entry_1.png"))
-entry_bg_1 = canvas.create_image(
-    535.5,
-    126.5,
-    image=entry_image_1
-)
-entry_1 = Entry(
-    bd=0,
-    bg="#FFFFFF",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_1.place(
-    x=420.0,
-    y=114.0,
-    width=231.0,
-    height=23.0
-)
-
-entry_image_2 = PhotoImage(
-    file=relative_to_assets("entry_2.png"))
-entry_bg_2 = canvas.create_image(
-    600.5,
-    167.5,
-    image=entry_image_2
-)
-entry_2 = Entry(
-    bd=0,
-    bg="#FFFFFF",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_2.place(
-    x=550.0,
-    y=155.0,
-    width=101.0,
-    height=23.0
-)
-
-entry_image_3 = PhotoImage(
-    file=relative_to_assets("entry_3.png"))
-entry_bg_3 = canvas.create_image(
-    470.5,
-    167.5,
-    image=entry_image_3
-)
-entry_3 = Entry(
-    bd=0,
-    bg="#FFFFFF",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_3.place(
-    x=420.0,
-    y=155.0,
-    width=101.0,
-    height=23.0
-)
 window.resizable(False, False)
 window.mainloop()

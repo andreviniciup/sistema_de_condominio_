@@ -2,9 +2,24 @@ import tkinter as tk
 import sqlite3
 
 def obter_informacoes_do_banco_de_dados():
-    # Simule a consulta à base de dados aqui
-    # Retorne os dados desejados (por exemplo, nome e data)
-    return "Vinicius", "09/05/2024"
+    # Conectar ao banco de dados
+    conn = sqlite3.connect('meu_banco_de_dados.db')
+    cursor = conn.cursor()
+    
+    # Executar a consulta
+    cursor.execute("SELECT nome, data FROM tabela WHERE id = 1")
+    
+    # Obter o resultado
+    resultado = cursor.fetchone()
+    
+    # Fechar a conexão
+    conn.close()
+    
+    # Retornar os dados
+    if resultado:
+        return resultado[0], resultado[1]
+    else:
+        return None, None
 
 def atualizar_retangulo():
     nome, data = obter_informacoes_do_banco_de_dados()
