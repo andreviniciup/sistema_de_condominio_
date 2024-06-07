@@ -1,17 +1,35 @@
 import sys
 import sqlite3
 import re
+import subprocess
 from pathlib import Path
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage,messagebox
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, messagebox
+import cadastro_moradores_editar_i as editar
 
-
+# Adicionando o caminho do script de banco de dados
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\andre\Desktop\faculdade\sistema de condominio\sistema_de_condominio_\interface\assets\frame4")
-from back.banco_de_dados.funcoesdb import inserir_morador
+
+# Importando funções de banco de dados
+from back.banco_de_dados.funcoesdb import inserir_morador, pesquisar_morador
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
+
+def pesquisar():
+    nome = entry_2.get()
+    bloco = entry_7.get()
+    apartamento = entry_8.get()
+    
+    resultado = pesquisar_morador(nome, bloco, apartamento)
+    
+    if resultado:
+        editar.preencher_campos_com_dados_do_banco(nome, bloco, apartamento)
+        window.destroy()
+    else:
+        messagebox.showinfo("Resultado da Pesquisa", "Nenhum morador encontrado.")
+
 
 def cadastrar():
     nome = entry_1.get()
@@ -23,12 +41,18 @@ def cadastrar():
     placa_carro = entry_5.get()
     inserir_morador(nome, cpf, data_nascimento, telefone, bloco, apartamento, placa_carro)
 
-window = Tk()
+def abrir_edicao(dados):
+    if len(dados) == 7:
+        args = [sys.executable, str(OUTPUT_PATH / "cadastro_moradores_editar_i.py")] + list(map(str, dados))
+        subprocess.run(args)
+    else:
+        messagebox.showerror("Erro", "Dados insuficientes para abrir a edição.")
 
+# Configuração da janela principal
+window = Tk()
 window.geometry("950x680")
 window.configure(bg = "#FFFFFF")
 window.title("Sistema de Condomínio")
-
 
 canvas = Canvas(
     window,
@@ -39,7 +63,6 @@ canvas = Canvas(
     highlightthickness = 0,
     relief = "ridge"
 )
-
 canvas.place(x = 0, y = 0)
 canvas.create_rectangle(
     473.0,
@@ -49,8 +72,8 @@ canvas.create_rectangle(
     fill="#FFFFFF",
     outline="")
 
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
+# Botões e entradas
+button_image_1 = PhotoImage(file=relative_to_assets("button_1.png"))
 button_1 = Button(
     image=button_image_1,
     borderwidth=0,
@@ -58,31 +81,19 @@ button_1 = Button(
     command=cadastrar,
     relief="flat"
 )
-button_1.place(
-    x=67.0,
-    y=527.0,
-    width=112.0,
-    height=40.78125
-)
+button_1.place(x=67.0, y=527.0, width=112.0, height=40.78125)
 
-button_image_2 = PhotoImage(
-    file=relative_to_assets("button_2.png"))
+button_image_2 = PhotoImage(file=relative_to_assets("button_2.png"))
 button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=pesquisar,
     relief="flat"
 )
-button_2.place(
-    x=640.0,
-    y=293.0,
-    width=114.0,
-    height=40.78125
-)
+button_2.place(x=640.0, y=293.0, width=114.0, height=40.78125)
 
-button_image_3 = PhotoImage(
-    file=relative_to_assets("button_3.png"))
+button_image_3 = PhotoImage(file=relative_to_assets("button_3.png"))
 button_3 = Button(
     image=button_image_3,
     borderwidth=0,
@@ -90,12 +101,7 @@ button_3 = Button(
     command=lambda: print("button_3 clicked"),
     relief="flat"
 )
-button_3.place(
-    x=39.0,
-    y=35.0,
-    width=30.0,
-    height=15.0
-)
+button_3.place(x=39.0, y=35.0, width=30.0, height=15.0)
 
 canvas.create_text(
     694.0,
@@ -133,8 +139,7 @@ canvas.create_text(
     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_1 = PhotoImage(
-    file=relative_to_assets("entry_1.png"))
+entry_image_1 = PhotoImage(file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(
     229.0,
     195.66262912750244,
@@ -145,7 +150,6 @@ entry_1 = Entry(
     bg="#FFFFFF",
     fg="#000716",
     highlightthickness=0
-
 )
 entry_1.place(
     x=82.0,
@@ -163,8 +167,7 @@ canvas.create_text(
     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_2 = PhotoImage(
-    file=relative_to_assets("entry_2.png"))
+entry_image_2 = PhotoImage(file=relative_to_assets("entry_2.png"))
 entry_bg_2 = canvas.create_image(
     696.0,
     195.66262912750244,
@@ -192,8 +195,7 @@ canvas.create_text(
     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_3 = PhotoImage(
-    file=relative_to_assets("entry_3.png"))
+entry_image_3 = PhotoImage(file=relative_to_assets("entry_3.png"))
 entry_bg_3 = canvas.create_image(
     181.0,
     254.66262912750244,
@@ -221,8 +223,7 @@ canvas.create_text(
     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_4 = PhotoImage(
-    file=relative_to_assets("entry_4.png"))
+entry_image_4 = PhotoImage(file=relative_to_assets("entry_4.png"))
 entry_bg_4 = canvas.create_image(
     148.5,
     431.66262912750244,
@@ -250,8 +251,7 @@ canvas.create_text(
     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_5 = PhotoImage(
-    file=relative_to_assets("entry_5.png"))
+entry_image_5 = PhotoImage(file=relative_to_assets("entry_5.png"))
 entry_bg_5 = canvas.create_image(
     148.5,
     490.66262912750244,
@@ -279,8 +279,7 @@ canvas.create_text(
     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_6 = PhotoImage(
-    file=relative_to_assets("entry_6.png"))
+entry_image_6 = PhotoImage(file=relative_to_assets("entry_6.png"))
 entry_bg_6 = canvas.create_image(
     323.5,
     431.66262912750244,
@@ -300,16 +299,15 @@ entry_6.place(
 )
 
 canvas.create_text(
-    540.0,
-    217.0,
-    anchor="nw",
-    text="bloco:",
-    fill="#000000",
-    font=("BeVietnamPro SemiBold", 17 * -1)
+     540.0,
+     217.0,
+     anchor="nw",
+     text="bloco:",
+     fill="#000000",
+     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_7 = PhotoImage(
-    file=relative_to_assets("entry_7.png"))
+entry_image_7 = PhotoImage(file=relative_to_assets("entry_7.png"))
 entry_bg_7 = canvas.create_image(
     610.0,
     254.66262912750244,
@@ -337,8 +335,7 @@ canvas.create_text(
     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_8 = PhotoImage(
-    file=relative_to_assets("entry_8.png"))
+entry_image_8 = PhotoImage(file=relative_to_assets("entry_8.png"))
 entry_bg_8 = canvas.create_image(
     782.0,
     254.66262912750244,
@@ -366,8 +363,7 @@ canvas.create_text(
     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_9 = PhotoImage(
-    file=relative_to_assets("entry_9.png"))
+entry_image_9 = PhotoImage(file=relative_to_assets("entry_9.png"))
 entry_bg_9 = canvas.create_image(
     181.0,
     372.66262912750244,
@@ -395,8 +391,7 @@ canvas.create_text(
     font=("BeVietnamPro SemiBold", 17 * -1)
 )
 
-entry_image_10 = PhotoImage(
-    file=relative_to_assets("entry_10.png"))
+entry_image_10 = PhotoImage(file=relative_to_assets("entry_10.png"))
 entry_bg_10 = canvas.create_image(
     179.0,
     313.66262912750244,
@@ -414,5 +409,6 @@ entry_10.place(
     width=198.0,
     height=29.325258255004883
 )
+
 window.resizable(False, False)
 window.mainloop()
