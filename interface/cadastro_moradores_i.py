@@ -2,20 +2,22 @@ import sys
 import sqlite3
 import re
 import subprocess
+import os
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, messagebox
 import cadastro_moradores_editar_i as editar
 
 # Adicionando o caminho do script de banco de dados
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+script_dir = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\andre\Desktop\faculdade\sistema de condominio\sistema_de_condominio_\interface\assets\frame4")
+ASSETS_PATH = os.path.join(script_dir, "assets", "frame4")
 
 # Importando funções de banco de dados
 from back.banco_de_dados.funcoesdb import inserir_morador, pesquisar_morador
 
-def relative_to_assets(path: str) -> Path:
-    return ASSETS_PATH / Path(path)
+def relative_to_assets(path: str) -> str:
+    return os.path.join(ASSETS_PATH, path)
 
 def pesquisar():
     nome = entry_2.get()

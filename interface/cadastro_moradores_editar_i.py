@@ -1,17 +1,18 @@
 import sys
+import os
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage,messagebox
 
-
+script_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\andre\Desktop\faculdade\sistema de condominio\sistema_de_condominio_\interface\assets\frame5")
+ASSETS_PATH = os.path.join(script_dir, "assets", "frame5")
 from back.banco_de_dados.funcoesdb import pesquisar_morador
 
 dados = sys.argv[1:]
 
-def relative_to_assets(path: str) -> Path:
-    return ASSETS_PATH / Path(path)
+def relative_to_assets(path: str) -> str:
+    return os.path.join(ASSETS_PATH, path)
 
 
 def preencher_campos_com_dados_do_banco(nome, bloco, apartamento):
