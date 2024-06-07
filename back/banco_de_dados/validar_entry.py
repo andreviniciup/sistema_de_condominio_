@@ -26,7 +26,7 @@ def validar_apartamento(apartamento):
     match = re.match(r'^\d{3}$', apartamento)
     return match is not None
 
-def placa_carro(placa_carro):
+def validar_placa_carro(placa_carro):
     match = re.match(r'^[a-zA-Z0-9\s]{1,50}$', placa_carro)
     return match is not None
     

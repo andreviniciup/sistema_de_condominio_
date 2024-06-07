@@ -1,15 +1,27 @@
-
+import sys
+import sqlite3
+import re
 from pathlib import Path
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage,messagebox
 
 
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\andre\Desktop\faculdade\sistema de condominio\sistema_de_condominio_\interface\assets\frame4")
-
+from back.banco_de_dados.funcoesdb import inserir_morador
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def cadastrar():
+    nome = entry_1.get()
+    cpf = entry_3.get()
+    data_nascimento = entry_10.get()
+    telefone = entry_9.get()
+    bloco = entry_4.get()
+    apartamento = entry_6.get()
+    placa_carro = entry_5.get()
+    inserir_morador(nome, cpf, data_nascimento, telefone, bloco, apartamento, placa_carro)
 
 window = Tk()
 
@@ -43,7 +55,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
+    command=cadastrar,
     relief="flat"
 )
 button_1.place(
@@ -133,6 +145,7 @@ entry_1 = Entry(
     bg="#FFFFFF",
     fg="#000716",
     highlightthickness=0
+
 )
 entry_1.place(
     x=82.0,

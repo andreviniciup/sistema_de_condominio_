@@ -1,7 +1,13 @@
-import sqlite3
+import sys
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage, messagebox
-from validar_entry import validar_nome, validar_cpf, validar_telefone  # Importar funções de validação
+import sqlite3
+
+# Adiciona o caminho da pasta 'back/banco_de_dados' ao sys.path
+sys.path.append(str(Path(__file__).parent.parent / 'back' / 'banco_de_dados'))
+
+# Agora você pode importar o módulo de validação
+from validar_entry import validar_nome, validar_cpf, validar_telefone
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\andre\Desktop\faculdade\sistema de condominio\sistema_de_condominio_\interface\assets\frame5")
@@ -53,7 +59,7 @@ canvas = Canvas(
     height = 680,
     width = 950,
     bd = 0,
-    highlightthickness=0,
+    highlightthickness = 0,
     relief = "ridge"
 )
 
@@ -64,7 +70,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=submeter,  # Substituindo pela função submeter
+    command=submeter,
     relief="flat"
 )
 button_1.place(
@@ -72,56 +78,6 @@ button_1.place(
     y=525.0,
     width=90.0,
     height=40.78125
-)
-
-button_image_2 = PhotoImage(
-    file=relative_to_assets("button_2.png"))
-button_2 = Button(
-    image=button_image_2,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
-    relief="flat"
-)
-button_2.place(
-    x=169.0,
-    y=526.0,
-    width=90.0,
-    height=37.82606506347656
-)
-
-button_image_3 = PhotoImage(
-    file=relative_to_assets("button_3.png"))
-button_3 = Button(
-    image=button_image_3,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
-    relief="flat"
-)
-button_3.place(
-    x=28.0,
-    y=33.0,
-    width=30.0,
-    height=15.0
-)
-
-canvas.create_text(
-    683.0,
-    24.0,
-    anchor="nw",
-    text="cadastro de moradores",
-    fill="#B9B9B9",
-    font=("BeVietnamPro Light", 19 * -1)
-)
-
-canvas.create_text(
-    58.0,
-    78.0,
-    anchor="nw",
-    text="Cadastro",
-    fill="#8EBC4F",
-    font=("BeVietnamPro Bold", 45 * -1)
 )
 
 canvas.create_text(
@@ -184,6 +140,64 @@ entry_2.place(
 
 canvas.create_text(
     56.0,
+    273.0,
+    anchor="nw",
+    text="data de nascimento:",
+    fill="#000000",
+    font=("BeVietnamPro SemiBold", 17 * -1)
+)
+
+entry_image_7 = PhotoImage(
+    file=relative_to_assets("entry_7.png"))
+entry_bg_7 = canvas.create_image(
+    164.0,
+    310.66262912750244,
+    image=entry_image_7
+)
+entry_7 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_7.place(
+    x=65.0,
+    y=295.0,
+    width=198.0,
+    height=29.325258255004883
+)
+
+canvas.create_text(
+    58.0,
+    332.0,
+    anchor="nw",
+    text="telefone:",
+    fill="#000000",
+    font=("BeVietnamPro SemiBold", 17 * -1)
+)
+
+entry_image_6 = PhotoImage(
+    file=relative_to_assets("entry_6.png"))
+entry_bg_6 = canvas.create_image(
+    166.0,
+    369.66262912750244,
+    image=entry_image_6
+)
+entry_6 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_6.place(
+    x=67.0,
+    y=354.0,
+    width=198.0,
+    height=29.325258255004883
+)
+
+canvas.create_text(
+    56.0,
     391.0,
     anchor="nw",
     text="bloco:",
@@ -207,35 +221,6 @@ entry_3 = Entry(
 entry_3.place(
     x=65.0,
     y=413.0,
-    width=137.0,
-    height=29.325258255004883
-)
-
-canvas.create_text(
-    56.0,
-    450.0,
-    anchor="nw",
-    text="placa do carro:",
-    fill="#000000",
-    font=("BeVietnamPro SemiBold", 17 * -1)
-)
-
-entry_image_4 = PhotoImage(
-    file=relative_to_assets("entry_4.png"))
-entry_bg_4 = canvas.create_image(
-    133.5,
-    487.66262912750244,
-    image=entry_image_4
-)
-entry_4 = Entry(
-    bd=0,
-    bg="#FFFFFF",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_4.place(
-    x=65.0,
-    y=472.0,
     width=137.0,
     height=29.325258255004883
 )
@@ -270,9 +255,33 @@ entry_5.place(
 )
 
 canvas.create_text(
-    58.0,
-    332.0,
+    56.0,
+    450.0,
     anchor="nw",
-    text="telefone:",
+    text="placa do carro:",
     fill="#000000",
-    font=("
+    font=("BeVietnamPro SemiBold", 17 * -1)
+)
+
+entry_image_4 = PhotoImage(
+    file=relative_to_assets("entry_4.png"))
+entry_bg_4 = canvas.create_image(
+    133.5,
+    487.66262912750244,
+    image=entry_image_4
+)
+entry_4 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_4.place(
+    x=65.0,
+    y=472.0,
+    width=137.0,
+    height=29.325258255004883
+)
+
+window.resizable(False, False)
+window.mainloop()
