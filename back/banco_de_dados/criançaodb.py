@@ -34,6 +34,21 @@ CREATE TABLE IF NOT EXISTS visitantes (
 )
 ''')
 
+cursor.execute('''
+CREATE TABLE visitantes_antigos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    morador_id INTEGER,
+    nome_visitante TEXT NOT NULL,
+    horario1 TEXT NOT NULL,
+    horario2 TEXT NOT NULL,
+    data TEXT NOT NULL,
+    nome_morador TEXT NOT NULL,
+    bloco TEXT NOT NULL,
+    apartamento TEXT NOT NULL,
+    FOREIGN KEY (morador_id) REFERENCES moradores(id)
+)
+''')
+
 # Criando a tabela de encomendas
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS encomenda (
@@ -61,6 +76,27 @@ FROM
 ''')
 
 # Salvando (commit) as mudanças
+conn.commit()
+
+# Fechando a conexão
+conn.close()
+
+
+# Criando a tabela de encomendas
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS encomenda_antigas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    apartamento TEXT,
+    bloco TEXT,
+    data_entrega TEXT,
+    data_retirada TEXT,
+    porteiro TEXT,
+    cpf TEXT NOT NULL DEFAULT '',
+    nome_de_quem_retirou TEXT
+)
+''')
+
 conn.commit()
 
 # Fechando a conexão

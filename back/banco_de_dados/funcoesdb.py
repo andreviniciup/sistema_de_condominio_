@@ -75,30 +75,41 @@ def inserir_visitante(nome_visitante, horario1, horario2, data, nome_morador, bl
 
 
 def pesquisar_morador(nome, bloco, apartamento):
+    conexao = sqlite3.connect('condominio.db')
+    cursor = conexao.cursor()
+    query = "SELECT * FROM moradores WHERE nome = ? AND bloco = ? AND apartamento = ?"
+    cursor.execute(query, (nome, bloco, apartamento))
+    resultado = cursor.fetchone()
+    conexao.close()
+    return resultado
+
+import sqlite3
+from tkinter import messagebox
+
+def inserir_encomenda(nome, data_entrega, bloco, apartamento, porteiro):
+    if not validar_nome(nome):
+        messagebox.showerror("Erro", "Nome inválido. Deve conter apenas letras e até 50 caracteres.")
+        return
+    if not validar_data_nascimento(data_entrega):
+        messagebox.showerror("Erro", "Data de entrega inválida. Deve estar no formato DDMMAAAA.")
+        return
+    if not validar_bloco(bloco):
+        messagebox.showerror("Erro", "Bloco inválido. Deve conter até 10 caracteres alfanuméricos.")
+        return
+    if not validar_apartamento(apartamento):
+        messagebox.showerror("Erro", "Apartamento inválido. Deve conter até 4 números.")
+        return
+    if not validar_nome(porteiro):
+        messagebox.showerror("Erro", "Nome do porteiro inválido. Deve conter apenas letras e até 50 caracteres.")
+        return
+
     conn = sqlite3.connect('condominio.db')
     cursor = conn.cursor()
-    
-    # Consulta SQL para obter informações do morador
     cursor.execute('''
-    SELECT 
-        nome, 
-        cpf,
-        data_nascimento,
-        telefone,
-        bloco, 
-        apartamento, 
-        placa_carro
-    FROM moradores
-    WHERE nome = ? AND bloco = ? AND apartamento = ?
-    ''', (nome, bloco, apartamento))
-    
-    resultados = cursor.fetchall()
-    
-    if resultados:
-        for linha in resultados:
-            print(f"Morador: {linha[0]}, CPF: {linha[1]}, Data de Nascimento: {linha[2]}, Telefone: {linha[3]}, Bloco: {linha[4]}, Apartamento: {linha[5]}, Placa do Carro: {linha[6]}")
-    else:
-        print("Nenhum resultado encontrado para os critérios de pesquisa fornecidos.")
-    
+    INSERT INTO encomendas (nome, data_entrega, bloco, apartamento, porteiro)
+    VALUES (?, ?, ?, ?, ?)
+    ''', (nome, data_entrega, bloco, apartamento, porteiro))
+    conn.commit()
     conn.close()
-
+    
+    messagebox.showinfo("Sucesso", "Encomenda inserida com sucesso.")
