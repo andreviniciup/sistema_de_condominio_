@@ -3,7 +3,8 @@ import sqlite3
 import re
 import subprocess
 import os
-import back
+from funcoesdb import *
+import json
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, messagebox
 
@@ -19,15 +20,22 @@ def relative_to_assets(path: str) -> str:
 def voltar():
     args = [sys.executable, str(OUTPUT_PATH / "dashboard_i.py")]
     subprocess.run(args)
+    window.destroy()
 
-def pesquisar():
+def pesquisar_():
     nome = entry_1.get()
     bloco = entry_2.get()
     apartamento = entry_3.get()
-    
-    if nome and bloco and apartamento:  # Verifica se todos os campos estão preenchidos
-        abrir_edicao([nome, bloco, apartamento])
-        window.destroy()
+
+    if nome and bloco and apartamento:
+        # Pesquisar no banco de dados
+        dados_encomenda = pesquisar_encomenda(nome, bloco, apartamento)
+
+        if dados_encomenda:
+            abrir_pesquisa(dados_encomenda)
+            window.destroy()
+        else:
+            messagebox.showinfo("Erro", "Morador não encontrado.")
     else:
         messagebox.showinfo("Erro", "Por favor, preencha todos os campos.")
 
@@ -37,14 +45,17 @@ def cadastrar():
     apartamento = entry_8.get()
     data_entrega = entry_7.get()
     porteiro = entry_4.get()
-    back.inserir_encomenda(nome, data_entrega, bloco, apartamento, porteiro)
+    inserir_encomenda(nome, data_entrega, bloco, apartamento,porteiro)
 
-def abrir_edicao(dados):
-    if len(dados) == 3:
-        args = [sys.executable, str(OUTPUT_PATH / "cadastro_pesquisa_I.py")] + list(map(str, dados))
+def abrir_pesquisa(dados_encomenda):
+    print("Comprimento dos dados da encomenda:", len(dados_encomenda))
+    if len(dados_encomenda) >= 1 :
+        args = [sys.executable, str(OUTPUT_PATH / "encomendas_pesquisa_I.py"),json.dumps(dados_encomenda)]
         subprocess.run(args)
+        window.destroy()
     else:
         messagebox.showerror("Erro", "Dados insuficientes para abrir a edição.")
+
 
 window = Tk()
 
@@ -88,7 +99,7 @@ entry_3 = Entry( bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0)
 entry_3.place( x=736.0, y=245.0, width=122.0, height=29.325258255004883)
 
 button_image_1 = PhotoImage( file=relative_to_assets("button_1.png"))
-button_1 = Button( image=button_image_1, borderwidth=0, highlightthickness=0, command=pesquisar, relief="flat")
+button_1 = Button( image=button_image_1, borderwidth=0, highlightthickness=0, command=pesquisar_, relief="flat")
 button_1.place( x=655.0, y=299.0, width=112.0, height=40.78125)
 
 #cadastro
