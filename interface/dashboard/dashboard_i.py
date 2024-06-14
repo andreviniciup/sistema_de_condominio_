@@ -5,27 +5,38 @@ from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 from datetime import datetime
 
+# Ajuste para definir o script_dir corretamente
 script_dir = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = os.path.join(script_dir,"assets", "frame3")
+project_root = Path(script_dir).parents[0]  # Isto assumindo que 'dashboard' está dentro de 'interface'
+
+# Defina OUTPUT_PATH como a raiz do projeto
+OUTPUT_PATH = project_root
+
+# Caminho para assets
+ASSETS_PATH = os.path.join(script_dir, "assets", "frame3")
+
 
 def relative_to_assets(path: str) -> str:
     return os.path.join(ASSETS_PATH, path)
 
 def cadastro_moradores():
-    args = [sys.executable, str(OUTPUT_PATH / "cadastro_moradores_i.py")]
+    script_path = os.path.join(OUTPUT_PATH, "moradores", "cadastro_moradores_i.py")
+    args = [sys.executable, script_path]
     subprocess.run(args)
     window.destroy()
+
     
 
 def liberar_visitantes():
-    args = [sys.executable, str(OUTPUT_PATH / "liberar_visitantes_i.py")]
+    script_path = os.path.join(OUTPUT_PATH, "visitantes", "liberar_visitantes_i.py")
+    args = [sys.executable, script_path]
     subprocess.run(args)
     window.destroy()
     
 
 def encomendas():
-    args = [sys.executable, str(OUTPUT_PATH / "encomendas_cadastro_i.py")]
+    script_path = os.path.join(OUTPUT_PATH, "encomendas", "encomendas_cadastro_i.py")
+    args = [sys.executable, script_path]
     subprocess.run(args)
     window.destroy()
 
