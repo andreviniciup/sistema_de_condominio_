@@ -1,15 +1,15 @@
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, messagebox
-from funcoesdb import *
 import json
 import os
 import subprocess
 import sys
+project_path = Path(__file__).resolve().parent.parent
+sys.path.append(str(project_path))
+from back.banco_de_dados.funcoes_encomendas import * 
 
-
-script_dir = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = os.path.join(script_dir, "assets", "frame0")
+ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets", "frame0")
 
 def relative_to_assets(path: str) -> str:
     return os.path.join(ASSETS_PATH, path)

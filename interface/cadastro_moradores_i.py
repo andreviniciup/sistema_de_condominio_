@@ -3,15 +3,17 @@ import sqlite3
 import re
 import subprocess
 import os
-from funcoesdb import *
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, messagebox
 
+project_path = Path(__file__).resolve().parent.parent
+sys.path.append(str(project_path))
 
-# Adicionando o caminho do script de banco de dados
-script_dir = os.path.dirname(os.path.abspath(__file__))
+from back.banco_de_dados.funcoes_morador import * 
+
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = os.path.join(script_dir, "assets", "frame4")
+ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets", "frame4")
+
 
 def relative_to_assets(path: str) -> str:
     return os.path.join(ASSETS_PATH, path)

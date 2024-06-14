@@ -1,16 +1,16 @@
 import sys
 import os
 import subprocess
-from funcoesdb import * 
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage, messagebox
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(script_dir, "..", "back", "banco_de_dados"))
+project_path = Path(__file__).resolve().parent.parent
+sys.path.append(str(project_path))
 
+from back.banco_de_dados.funcoes_morador import * 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = os.path.join(script_dir, "assets", "frame5")
+ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets", "frame5")
 
 def voltar():
     args = [sys.executable, str(OUTPUT_PATH / "cadastro_moradores_i.py")]

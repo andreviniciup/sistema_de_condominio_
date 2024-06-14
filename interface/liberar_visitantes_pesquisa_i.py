@@ -4,10 +4,13 @@ import subprocess
 from pathlib import Path
 import sqlite3
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+project_path = Path(__file__).resolve().parent.parent
+sys.path.append(str(project_path))
+from back.banco_de_dados.funcoes_visitantes import * 
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
+
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = os.path.join(script_dir, "assets", "frame7")
+ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets", "frame7")
 
 def abrir_arquivo_python_com_resultados(resultados):
     nome_morador, bloco, apartamento = resultados

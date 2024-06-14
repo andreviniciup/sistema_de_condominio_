@@ -5,11 +5,13 @@ from pathlib import Path
 import sqlite3
 import json
 from tkinter import Tk, Canvas, Frame, Entry, Text, Button, PhotoImage, messagebox
+project_path = Path(__file__).resolve().parent.parent
+sys.path.append(str(project_path))
+from back.banco_de_dados.funcoes_visitantes import * 
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
+
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = os.path.join(script_dir,"assets" ,"frame6")
-
+ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets", "frame6")
 
 def relative_to_assets(path: str) -> str:
     return os.path.join(ASSETS_PATH, path)
