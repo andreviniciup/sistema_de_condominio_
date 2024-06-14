@@ -5,7 +5,7 @@ from pathlib import Path
 import sqlite3
 import json
 from tkinter import Tk, Canvas, Frame, Entry, Text, Button, PhotoImage, messagebox
-project_path = Path(__file__).resolve().parent.parent
+project_path = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(project_path))
 from back.banco_de_dados.funcoes_visitantes import * 
 

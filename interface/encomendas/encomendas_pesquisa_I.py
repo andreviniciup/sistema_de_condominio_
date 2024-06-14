@@ -4,7 +4,7 @@ import json
 import os
 import subprocess
 import sys
-project_path = Path(__file__).resolve().parent.parent
+project_path = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(project_path))
 from back.banco_de_dados.funcoes_encomendas import * 
 

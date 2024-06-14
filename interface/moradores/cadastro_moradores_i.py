@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, messagebox
 
-project_path = Path(__file__).resolve().parent.parent
+project_path = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(project_path))
 
 from back.banco_de_dados.funcoes_morador import * 

@@ -4,7 +4,7 @@ import subprocess
 from pathlib import Path
 import sqlite3
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-project_path = Path(__file__).resolve().parent.parent
+project_path = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(project_path))
 from back.banco_de_dados.funcoes_visitantes import * 
 
