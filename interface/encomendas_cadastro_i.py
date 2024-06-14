@@ -22,7 +22,7 @@ def voltar():
     subprocess.run(args)
     window.destroy()
 
-def pesquisar_():
+def pesquisar():
     nome = entry_1.get()
     bloco = entry_2.get()
     apartamento = entry_3.get()
@@ -99,7 +99,7 @@ entry_3 = Entry( bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0)
 entry_3.place( x=736.0, y=245.0, width=122.0, height=29.325258255004883)
 
 button_image_1 = PhotoImage( file=relative_to_assets("button_1.png"))
-button_1 = Button( image=button_image_1, borderwidth=0, highlightthickness=0, command=pesquisar_, relief="flat")
+button_1 = Button( image=button_image_1, borderwidth=0, highlightthickness=0, command=pesquisar, relief="flat")
 button_1.place( x=655.0, y=299.0, width=112.0, height=40.78125)
 
 #cadastro

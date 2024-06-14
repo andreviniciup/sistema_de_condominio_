@@ -12,15 +12,6 @@ ASSETS_PATH = os.path.join(script_dir,"assets", "frame3")
 def relative_to_assets(path: str) -> str:
     return os.path.join(ASSETS_PATH, path)
 
-def obter_msg():
-    hora_atual = datetime.now().hour
-    if 5 <= hora_atual < 12:
-        return "Bom dia"
-    elif 12 <= hora_atual < 18:
-        return "Boa tarde"
-    else:
-        return "Boa noite"
-
 def cadastro_moradores():
     args = [sys.executable, str(OUTPUT_PATH / "cadastro_moradores_i.py")]
     subprocess.run(args)
@@ -37,7 +28,15 @@ def encomendas():
     args = [sys.executable, str(OUTPUT_PATH / "encomendas_cadastro_i.py")]
     subprocess.run(args)
     window.destroy()
-    
+
+def obter_msg():
+    hora_atual = datetime.now().hour
+    if 5 <= hora_atual < 12:
+        return "Bom dia"
+    elif 12 <= hora_atual < 18:
+        return "Boa tarde"
+    else:
+        return "Boa noite" 
 
 window = Tk()
 

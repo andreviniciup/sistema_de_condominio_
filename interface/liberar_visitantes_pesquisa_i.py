@@ -9,13 +9,6 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = os.path.join(script_dir, "assets", "frame7")
 
-def relative_to_assets(path: str) -> str:
-    return os.path.join(ASSETS_PATH, path)
-
-def voltar():
-    args = [sys.executable, str(OUTPUT_PATH / "liberar_visitantes_i.py")]
-    subprocess.run(args)
-
 def abrir_arquivo_python_com_resultados(resultados):
     nome_morador, bloco, apartamento = resultados
 
@@ -64,6 +57,8 @@ def atualizar_dados_canvas(resultados):
         elif i == 2:
             preencher_pessoa3(nome, hora1, hora2, data, bloco, apto)
 
+def relative_to_assets(path: str) -> str:
+    return os.path.join(ASSETS_PATH, path)
 
 def preencher_pessoa1(nome, data, hora1, hora2, bloco, apto):
     criar_elemetos_pessoa1()
@@ -91,6 +86,11 @@ def preencher_pessoa3(nome, data, hora1, hora2, bloco, apto):
     canvas.create_text( 153.0, 196.0, anchor="nw", text=hora2, fill="#000000", font=("BeVietnamPro Medium", 14 * -1), tags="dinamico")
     canvas.create_text( 284.0, 196.0, anchor="nw", text=bloco, fill="#000000", font=("BeVietnamPro Medium", 14 * -1), tags="dinamico")
     canvas.create_text( 332.0, 196.0, anchor="nw", text=apto, fill="#000000", font=("BeVietnamPro Medium", 14 * -1), tags="dinamico")
+
+def voltar():
+    args = [sys.executable, str(OUTPUT_PATH / "liberar_visitantes_i.py")]
+    subprocess.run(args)
+
 
 window = Tk()
 

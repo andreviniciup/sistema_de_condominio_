@@ -30,9 +30,9 @@ def preencher_entradas_com_dados(nome, cpf, bloco, apartamento, placa_carro, tel
     entry_telefone.insert(0, apartamento)
     entry_data_nascimento.insert(0, bloco)
 
-def editar_morador(nome, cpf, bloco, apartamento, placa_carro, telefone, data_nascimento):
+def editar_morador_def(nome, cpf, bloco, apartamento, placa_carro, telefone, data_nascimento):
     try:
-        resultado = editar_morador(nome, cpf, bloco, apartamento, placa_carro, telefone, data_nascimento)
+        resultado = editar_morador(nome, cpf, data_nascimento, telefone, bloco, apartamento, placa_carro )
         
         if resultado:
             messagebox.showinfo("Sucesso", "Morador editado com sucesso.")
@@ -67,7 +67,7 @@ def salvar_edicao():
     telefone = entry_telefone.get()
     data_nascimento = entry_data_nascimento.get()
     
-    editar_morador(nome, cpf, bloco, apartamento, placa_carro, telefone, data_nascimento)
+    editar_morador(nome, cpf, data_nascimento, telefone, bloco, apartamento, placa_carro )
 
 window = Tk()
 window.geometry("950x680")

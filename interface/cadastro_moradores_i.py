@@ -1,8 +1,9 @@
 import sys
+import sqlite3
+import re
 import subprocess
 import os
 from funcoesdb import *
-from formatar_entradas import *
 from pathlib import Path
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, messagebox
 
@@ -21,23 +22,16 @@ def pesquisar():
     apartamento = entry_8.get()
 
     if nome and bloco and apartamento:
-        conn = criarconexao('condominio.db')
-        if conn.conn:
-            try:
-                # Pesquisar no banco de dados
-                dados = pesquisar_morador(conn, nome, bloco, apartamento)
-                if dados:
-                    abrir_edicao(dados)
-                    window.destroy()
-                else:
-                    messagebox.showinfo("Erro", "Morador não encontrado.")
-            finally:
-                conn.close()
+        # Pesquisar no banco de dados
+        dados = pesquisar_morador(nome, bloco, apartamento)
+
+        if dados:
+            abrir_edicao(dados)
+            window.destroy()
         else:
-            messagebox.showerror("Erro", "Erro ao conectar ao banco de dados.")
+            messagebox.showinfo("Erro", "Morador não encontrado.")
     else:
         messagebox.showinfo("Erro", "Por favor, preencha todos os campos.")
-
 
 def abrir_edicao(dados):
     if len(dados) == 7:
@@ -49,19 +43,14 @@ def abrir_edicao(dados):
 
 
 def cadastrar():
-    nome = formatar_nome(entry_1.get())
-    cpf = formatar_cpf(entry_3.get())
-    data_nascimento = formatar_data_nascimento(entry_10.get())
-    telefone = formatar_telefone(entry_9.get())
+    nome = entry_1.get()
+    cpf = entry_3.get()
+    data_nascimento = entry_10.get()
+    telefone = entry_9.get()
     bloco = entry_4.get()
     apartamento = entry_6.get()
-    placa_carro = formatar_placa_carro(entry_5.get())
-
-    conn = criarconexao('condominio.db')
-    
-    if conn:
-        inserir_morador(conn, nome, cpf, data_nascimento, telefone, bloco, apartamento, placa_carro)
-        conn.close()
+    placa_carro = entry_5.get()
+    inserir_morador(nome, cpf, data_nascimento, telefone, bloco, apartamento, placa_carro)
 
 def voltar():
     args = [sys.executable, str(OUTPUT_PATH / "dashboard_i.py")]
@@ -167,8 +156,6 @@ entry_image_10 = PhotoImage(file=relative_to_assets("entry_10.png"))
 entry_bg_10 = canvas.create_image( 179.0, 313.66262912750244, image=entry_image_10)
 entry_10 = Entry( bd=0, bg="#FFFFFF", fg="#000716", highlightthickness=0)
 entry_10.place( x=80.0, y=298.0, width=198.0, height=29.325258255004883)
-
-
 
 window.resizable(False, False)
 window.mainloop()

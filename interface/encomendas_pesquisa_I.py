@@ -79,7 +79,7 @@ def retirar_encomenda1():
         }
         args = [sys.executable, str(OUTPUT_PATH / "encomendas_retiradas_I.py"), json.dumps(encomenda_data)]
         subprocess.run(args)
-        window.destroy()
+        
     else:
         messagebox.showerror("Erro", "Dados insuficientes para abrir a edição.")
 

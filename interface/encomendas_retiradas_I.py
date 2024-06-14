@@ -83,6 +83,7 @@ def limpar_entradas():
     entry_bloco_retirada.delete(0, 'end')
     entry_apartamento_retirada.delete(0, 'end')
     entry_data_retirada.delete(0, 'end')
+    entry_porteiro.delete(0, 'end')
 
     # Limpar as entradas de entrega
     entry_nome_entrega.delete(0, 'end')

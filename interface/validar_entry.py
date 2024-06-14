@@ -41,4 +41,3 @@ def validar_data_entrega(data_entrega):
 def validar_data_retirada(data_retirada):
     match = re.match(r'^\d{8}$', data_retirada)
     return match is not None
-
