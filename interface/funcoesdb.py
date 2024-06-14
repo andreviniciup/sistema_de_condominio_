@@ -162,7 +162,7 @@ def editar_morador(nome, cpf, data_nascimento, telefone, bloco, apartamento, pla
         print(f"Erro inesperado: {e}")
         raise e
     
-def deletar_morador():
+def deletar_morador(nome, cpf, bloco, apartamento, placa_carro, telefone, data_nascimento):
     try:
         conn = sqlite3.connect('condominio.db')
         cursor = conn.cursor()
@@ -185,6 +185,7 @@ def deletar_morador():
         print(f"Erro inesperado: {e}")
         raise e
     
+
 def pesquisar_encomenda(nome, bloco, apartamento):
     conn = sqlite3.connect('condominio.db')
     cursor = conn.cursor()

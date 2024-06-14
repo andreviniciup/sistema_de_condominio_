@@ -40,17 +40,17 @@ def editar_morador_def(nome, cpf, bloco, apartamento, placa_carro, telefone, dat
             messagebox.showerror("Erro", "Erro ao editar morador.")
     except Exception as e:
         messagebox.showerror("Erro", f"Erro ao acessar o banco de dados: {e}")
-def deletar_morador(): 
+
+def deletar_morador_func(): 
     nome = entry_nome.get()
     cpf = entry_cpf.get()
     bloco = entry_bloco.get()
     apartamento = entry_apartamento.get()
     placa_carro = entry_placa_carro.get()
     telefone = entry_telefone.get()
-    data_nascimento = entry_data_nascimento.get() 
+    data_nascimento = entry_data_nascimento.get()
     try:
-        resultado = deletar_morador()
-        
+        resultado = deletar_morador(nome, cpf, bloco, apartamento, placa_carro, telefone, data_nascimento)
         if resultado:
             messagebox.showinfo("Sucesso", "Morador deletado com sucesso.")
         else:
@@ -82,7 +82,7 @@ button_1 = Button(image=button_image_1, borderwidth=0, highlightthickness=0, com
 button_1.place(x=56.0, y=525.0, width=90.0, height=40.78125)
 
 button_image_2 = PhotoImage(file=relative_to_assets("button_2.png"))
-button_2 = Button(image=button_image_2, borderwidth=0, highlightthickness=0, command=deletar_morador, relief="flat")
+button_2 = Button(image=button_image_2, borderwidth=0, highlightthickness=0, command=deletar_morador_func, relief="flat")
 button_2.place(x=169.0, y=526.0, width=90.0, height=37.82606506347656)
 
 button_image_3 = PhotoImage(file=relative_to_assets("button_3.png"))
